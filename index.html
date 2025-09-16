@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Naveen Jonnakuti — Cybersecurity Portfolio</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- AOS Animations -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+  <!-- FontAwesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #020617;
+      --accent: #00cfff;
+      --accent-2: #00ffae;
+      --card: #0a1120;
+      --muted: #9ca3af;
+    }
+
+    body, html {
+      margin: 0;
+      padding: 0;
+      background: var(--bg);
+      color: #e5e7eb;
+      font-family: "Orbitron", sans-serif;
+      overflow-x: hidden;
+    }
+
+    #matrix {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      z-index: -1;
+    }
+
+    .navbar {
+      background: rgba(0, 0, 0, 0.85);
+      border-bottom: 1px solid rgba(0, 255, 234, 0.2);
+    }
+
+    .navbar-brand {
+      color: var(--accent) !important;
+      font-weight: 700;
+    }
+
+    .nav-link {
+      color: #cbd5e1 !important;
+      font-weight: 600;
+    }
+
+    .nav-link:hover {
+      color: var(--accent) !important;
+      text-shadow: 0 0 12px var(--accent);
+    }
+
+    #hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    #hero h1 {
+      font-size: 3rem;
+      color: var(--accent);
+      text-shadow: 0 0 25px var(--accent), 0 0 50px var(--accent-2);
+    }
+
+    .btn-glow {
+      margin-top: 20px;
+      padding: 12px 26px;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+      background: transparent;
+      font-weight: 600;
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .btn-glow:hover {
+      background: var(--accent);
+      color: #000;
+      box-shadow: 0 0 30px var(--accent), 0 0 60px var(--accent-2);
+    }
+
+    .typewriter p {
+      display: inline-block;
+      overflow: hidden;
+      border-right: .15em solid var(--accent);
+      white-space: nowrap;
+      margin: 0 auto;
+      letter-spacing: .1em;
+      animation: typing 4s steps(40, end), blink .75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: var(--accent); }
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 50px;
+      color: var(--accent);
+      text-shadow: 0 0 15px var(--accent);
+      font-size: 2.2rem;
+    }
+
+    .card-neon {
+      background: var(--card);
+      border: 1px solid rgba(0, 255, 234, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      transition: .4s;
+      text-align: center;
+    }
+
+    .card-neon:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 30px var(--accent), 0 0 70px var(--accent-2);
+    }
+
+    .card-neon img {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 15px;
+    }
+
+    .timeline {
+      position: relative;
+      margin: 0 auto;
+      padding: 20px;
+      max-width: 800px;
+    }
+
+    .timeline::after {
+      content: '';
+      position: absolute;
+      width: 4px;
+      background: var(--accent);
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      margin-left: -2px;
+    }
+
+    .timeline-item {
+      padding: 20px 40px;
+      position: relative;
+      background: var(--card);
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+
+    .timeline-item::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      right: -10px;
+      background: var(--accent);
+      top: 30px;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .timeline-item.left {
+      left: -50%;
+      text-align: right;
+    }
+
+    .timeline-item.right {
+      left: 50%;
+    }
+
+    .timeline-item h5 {
+      color: var(--accent-2);
+    }
+
+    .progress {
+      height: 10px;
+      background: #0f1a2e;
+      border-radius: 10px;
+    }
+
+    .progress-bar {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 15px var(--accent);
+    }
+
+    #outro {
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    #outro h2 {
+      color: var(--accent-2);
+      text-shadow: 0 0 20px var(--accent-2), 0 0 50px var(--accent);
+      animation: glow 2s infinite alternate;
+    }
+
+    #rotating-words {
+      margin-top: 20px;
+      font-size: 1.5rem;
+      color: var(--accent);
+      text-shadow: 0 0 20px var(--accent);
+    }
+
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--accent); }
+      to { text-shadow: 0 0 30px var(--accent-2), 0 0 60px var(--accent); }
+    }
+
+    footer {
+      background: #000;
+      text-align: center;
+      padding: 25px;
+      color: #6b7280;
+    }
+
+    #console {
+      background: #050a0f;
+      color: #00ffea;
+      font-family: monospace;
+      padding: 15px;
+      height: 200px;
+      overflow: hidden;
+      border-top: 2px solid var(--accent);
+      font-size: 14px;
+    }
+
+    /* NEW: VAPT Command box styling */
+    .cmd-box {
+      background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(5,10,15,0.8));
+      color: #bfffea;
+      font-family: "Courier New", monospace;
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid rgba(0,255,234,0.12);
+      text-align: left;
+      box-shadow: 0 0 20px rgba(0,255,234,0.04);
+    }
+
+    .cmd-box pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .note-legal {
+      color: #fca5a5;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="matrix"></canvas>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#"><i class="fa-solid fa-shield-halved"></i> Naveen Jonnakuti</a>
+    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#mainNav"><span class="navbar-toggler-icon"></span></button>
+    <div class="collapse navbar-collapse" id="mainNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#experience">Experience</a></li>
+        <li class="nav-item"><a class="nav-link" href="#projects">Projects</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certifications">Certifications</a></li>
+        <li class="nav-item"><a class="nav-link" href="#resume">Resume</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero (Hacker Intro) -->
+<header id="hero">
+  <div class="container" data-aos="zoom-in">
+    <h1>⚡ Naveen Jonnakuti ⚡</h1>
+    <div class="typewriter"><p>Cybersecurity Analyst | Ethical Hacker | Threat Hunter</p></div>
+    <p class="mt-3" style="color:var(--muted); font-size:1.1rem;">
+      <i class="fa-solid fa-terminal"></i> Initiating secure handshake... Access granted.<br>
+      Welcome to my domain. I break things ethically to protect the digital world.
+    </p>
+    <div class="d-flex justify-content-center flex-wrap gap-3 mt-4">
+      <a class="btn-glow" href="resume.pdf" target="_blank"><i class="fa-solid fa-file-pdf"></i> View Resume</a>
+      <a class="btn-glow" href="mailto:naveenprabhas070@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+      <a class="btn-glow" href="https://github.com/Maxmus006" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a class="btn-glow" href="https://www.linkedin.com/in/naveen-jonnakuti-844504193" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<!-- About -->
+<section id="about">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">About Me</h2>
+    <p class="text-center">Cybersecurity Professional specialized in <b>VAPT, API Security, Threat Intelligence, SOC Operations</b>. Passionate about <b>dark web intel, phishing detection, and AI-powered defense</b>. Always learning, always hacking (ethically).</p>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
+      <div class="timeline-item left">
+        <h5>Cybersecurity & Flutter Mentor – Datavalley.ai</h5>
+        <p>Trained 500+ learners on Ethical Hacking, Malware Analysis, PenTesting & DevSecOps.</p>
+      </div>
+      <div class="timeline-item right">
+        <h5>Jr. Network Security Engineer – Negen Diagnostic</h5>
+        <p>Implemented firewalls, monitored network traffic, and mitigated threats.</p>
+      </div>
+      <div class="timeline-item left">
+        <h5>Jr. System Administrator Intern – ITechServ</h5>
+        <p>Managed Windows/Linux servers, applied patches, monitored systems.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Projects -->
+<section id="projects">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">Projects</h2>
+    <div class="row g-4">
+      <div class="col-md-6"><div class="card-neon"><img src="https://media.giphy.com/media/ZVik7pBtu9dNS/giphy.gif"><h5>ThreatScape Sentinel</h5><p>Hybrid AI IDS for ICS/SCADA with CNN+LSTM+Autoencoders.</p></div></div>
+      <div class="col-md-6"><div class="card-neon"><img src="https://media.giphy.com/media/xT9IgzoKnwFNmISR8I/giphy.gif"><h5>PhishShield</h5><p>AI phishing detection with Flask, Streamlit & Chrome Extension.</p></div></div>
+      <div class="col-md-6"><div class="card-neon"><img src="https://media.giphy.com/media/26AHONQ79FdWZhAI0/giphy.gif"><h5>PS-2 Phishing Detection</h5><p>AI/ML phishing detection for Critical Sector Entities.</p></div></div>
+      <div class="col-md-6"><div class="card-neon"><img src="https://media.giphy.com/media/3oEjHI8zlj2a9nZ5xC/giphy.gif"><h5>Snort IDS/IPS</h5><p>Custom Snort rules for DNS Flood & DDoS attack detection.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">Skills</h2>
+    <div class="row g-4">
+      <div class="col-md-6"><div class="card-neon p-3"><h6>VAPT & AppSec</h6><div class="progress mb-3"><div class="progress-bar" style="width:90%"></div></div><h6>Web & API Pentesting</h6><div class="progress mb-3"><div class="progress-bar" style="width:88%"></div></div><h6>Mobile App Security</h6><div class="progress"><div class="progress-bar" style="width:75%"></div></div></div></div>
+      <div class="col-md-6"><div class="card-neon p-3"><h6>Network & Threat Intel</h6><div class="progress mb-3"><div class="progress-bar" style="width:85%"></div></div><h6>IDS/IPS (Snort)</h6><div class="progress mb-3"><div class="progress-bar" style="width:87%"></div></div><h6>Python/Bash Scripting</h6><div class="progress"><div class="progress-bar" style="width:82%"></div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certifications">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">Certifications</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-3"><div class="card-neon p-3">🎓 B.Tech Cyber Security – CT University</div></div>
+      <div class="col-md-3"><div class="card-neon p-3">🛡️ Palo Alto – SOC Fundamentals</div></div>
+      <div class="col-md-3"><div class="card-neon p-3">🌐 Cisco – Cyber Security</div></div>
+      <div class="col-md-3"><div class="card-neon p-3">📡 Alison – Networking</div></div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Commands: VAPT & Linux (for authorized use) -->
+<section id="commands">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">VAPT & Linux Commands <small style="font-size:0.6rem;color:var(--muted)">(For authorized testing & learning only)</small></h2>
+
+    <div class="card-neon p-3 mb-4">
+      <p class="note-legal"><strong>Legal / Ethical Notice:</strong> The commands below are shown for defensive learning, auditing, and authorized penetration tests only. Do NOT run them against systems you do not own or do not have explicit written permission to test.</p>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <h6 style="color:var(--accent-2)">Common VAPT / Recon Commands</h6>
+          <div class="cmd-box">
+            <pre><code># Basic network/service discovery (authorized target)
+nmap -sS -Pn -sV -p 22,80,443 example.com
+
+# Quick top ports scan
+nmap -T4 --top-ports 100 example.com
+
+# HTTP headers and quick check
+curl -I https://example.com
+
+# Directory brute-force (replace wordlist path)
+gobuster dir -u https://example.com -w /usr/share/wordlists/dirb/common.txt -x php,html,txt
+
+# Web server scan (non-destructive)
+nikto -host https://example.com</code></pre>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <h6 style="color:var(--accent-2)">Linux / Sysadmin & Forensics Helpers</h6>
+          <div class="cmd-box">
+            <pre><code># Update & upgrade packages
+sudo apt update && sudo apt upgrade -y
+
+# Check listening ports & services
+ss -tuln
+
+# Real-time logs (systemd)
+sudo journalctl -f
+
+# Monitor auth logs (login attempts)
+sudo tail -f /var/log/auth.log
+
+# Quick disk & permission checks
+df -h
+sudo find / -perm -4000 -type f 2>/dev/null
+
+# Basic hardening (private key perms example)
+chmod 600 ~/.ssh/id_rsa
+chown $USER:$USER ~/.ssh/id_rsa</code></pre>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-4">
+        <h6 style="color:var(--accent-2)">Simple Automation & Recon Snippet</h6>
+        <div class="cmd-box">
+          <pre><code># Example: combine a quick nmap + curl check for authorized target
+TARGET="example.com"
+nmap -Pn -sV -p 80,443 $TARGET -oN recon_${TARGET}_nmap.txt
+curl -sI https://$TARGET | grep -i "server\|x-powered-by" &gt; recon_${TARGET}_http.txt
+echo "Saved recon_${TARGET}_*.txt"</code></pre>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="container" data-aos="fade-up">
+    <h2 class="section-title">Contact</h2>
+    <div class="card-neon mx-auto" style="max-width:500px;">
+      <p><i class="fa-solid fa-envelope"></i> <a href="mailto:naveenprabhas070@gmail.com" style="color:var(--accent);">naveenprabhas070@gmail.com</a></p>
+      <p><i class="fa-brands fa-github"></i> <a href="https://github.com/Maxmus006" target="_blank" style="color:var(--accent);">github.com/Maxmus006</a></p>
+      <p><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/naveen-jonnakuti-844504193" target="_blank" style="color:var(--accent);">linkedin.com/in/naveen-jonnakuti</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- Outro -->
+<section id="outro">
+  <h2>⚡ Thanks for Visiting ⚡</h2>
+  <div id="rotating-words">PenTesting | SOC | Zero-Day | Threat Intel</div>
+  <p style="margin-top:20px; color:var(--muted);">
+    <i class="fa-solid fa-user-secret"></i> Stay safe, encrypt everything, and trust no one.<br>
+    <i class="fa-solid fa-code"></i> — Naveen Jonnakuti
+  </p>
+</section>
+
+<!-- Hacker Console -->
+<div id="console"></div>
+
+<footer>© 2025 Naveen Jonnakuti | Cybersecurity Portfolio</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+<script>
+  AOS.init({ duration: 1000, once: true });
+
+  // Matrix Rain
+  const canvas = document.getElementById("matrix"), ctx = canvas.getContext("2d");
+  function resizeCanvas(){
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+  const letters = "01#$%&@ΞλΣΨΦΩ";
+  const fontSize = 16;
+  let columns = Math.floor(canvas.width / fontSize);
+  let drops = Array(columns).fill(1);
+  function draw() {
+    ctx.fillStyle = "rgba(0,0,0,0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0ff";
+    ctx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  setInterval(draw, 40);
+
+  // Console Log Simulation
+  const consoleEl = document.getElementById("console");
+  const logLines = [
+    "[*] Initializing Cyber Defense Protocols...",
+    "[+] Establishing secure connection...",
+    "[+] Threat Intel feed connected ✔",
+    "[+] Snort IDS active ✔",
+    "[+] AI Engine online ✔",
+    "[+] Resume file loaded successfully ✔",
+    "[✓] System Secure. Monitoring live threats..."
+  ];
+  let i = 0;
+  const interval = setInterval(() => {
+    if (i < logLines.length) {
+      consoleEl.innerHTML += logLines[i] + "<br>";
+      consoleEl.scrollTop = consoleEl.scrollHeight;
+      i++;
+    } else clearInterval(interval);
+  }, 900);
+
+  // Rotating words (simple cycle)
+  const words = ["PenTesting","SOC","Zero-Day","Threat Intel","VAPT"];
+  let wIndex = 0;
+  const rotEl = document.getElementById("rotating-words");
+  setInterval(() => {
+    wIndex = (wIndex + 1) % words.length;
+    rotEl.innerText = words[wIndex];
+  }, 2500);
+
+</script>
+</body>
+</html>
